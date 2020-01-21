@@ -3,10 +3,6 @@ const mongoose = require("mongoose");
 const app = express();
 const bodyParser = require("body-parser");
 require("dotenv/config");
-// Middlewares
-// app.use('/post',()=>{
-//     console.log('log');
-// })
 app.use(bodyParser.json());
 //routes
 const postRouter = require("./routes/post");
@@ -22,8 +18,8 @@ app.get("/", (req, res) => {
 mongoose.connect(
   process.env.DB_CONNECTION,
   { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
-  () => {
-    console.log("connect DB");
+  err => {
+    console.log(err);
   }
 );
 //
