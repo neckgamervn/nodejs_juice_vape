@@ -8,6 +8,8 @@ app.use(bodyParser.json());
 const postRouter = require("./routes/post");
 app.use("/post", postRouter);
 app.get("/", (req, res) => {
+  console.log(process.env);
+
   try {
     res.send("Wellcome to api juice vape");
   } catch (error) {
