@@ -13,7 +13,7 @@ const postRouter = require("./routes/post");
 app.use("/post", postRouter);
 app.get("/", (req, res) => {
   try {
-    res.send("Wellcome");
+    res.send("Wellcome to api juice vape");
   } catch (error) {
     res.send("Error");
   }
