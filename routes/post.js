@@ -17,9 +17,7 @@ router.get("/", async (req, res) => {
     const getPost = req.query._id
       ? await Post.findById(req.query._id)
       : await Post.find();
-    res.json({
-      data: getPost
-    });
+    res.json(CONST.onSuccess(getPost));
   } catch (error) {
     res.json(CONST.ERROR);
   }
@@ -28,19 +26,19 @@ router.get("/", async (req, res) => {
 router.delete("/", async (req, res) => {
   try {
     const remove = await Post.findByIdAndRemove(req.body._id);
-    res.json(CONST.SUCCESS);
+    res.json(CONST.onSuccess(remove));
   } catch (error) {
     res.json(CONST.ERROR);
   }
 });
 router.patch("/", async (req, res) => {
   try {
-    const update = await Post.findByIdAndUpdate(req.body._id, {
+    const update = await Post.findOneAndUpdate(req.body._id, {
       $set: {
-        title: "ahihi"
+        title: req.body.title
       }
     });
-    res.json(CONST.SUCCESS);
+    res.json(CONST.onSuccess(update));
   } catch (error) {
     res.json(CONST.ERROR);
   }

@@ -9,10 +9,10 @@ const PostSchema = mongoose.Schema({
     type: String,
     require: true
   },
-  date: {
-    type: Date,
-    default: Date.now
+  timestamp: {
+    type: String,
+    default: new Date().getTime()
   }
 });
 
-module.exports = mongoose.model("Posts", PostSchema);
+module.exports = mongoose.model("Post", PostSchema);
