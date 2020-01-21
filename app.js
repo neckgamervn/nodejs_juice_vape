@@ -11,7 +11,9 @@ app.use(bodyParser.json());
 //routes
 const postRouter = require("./routes/post");
 app.use("/post", postRouter);
-
+app.get('/',(req,res)=>{
+  res.send("Wellcome")
+})
 // connect to DB
 mongoose.connect(
   process.env.DB_CONNECTION,
@@ -21,4 +23,4 @@ mongoose.connect(
   }
 );
 //
-app.listen(3000);
+app.listen(80);
