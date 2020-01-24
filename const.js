@@ -10,5 +10,10 @@ module.exports = {
       message: "Thành công",
       code: 200
     };
+  },
+  EMPTY:{
+    data: [],
+    message: "Rỗng",
+    code: 204
   }
 };

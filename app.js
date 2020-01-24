@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 require("dotenv/config");
 app.use(bodyParser.json());
 //routes
-const postRouter = require("./routes/post");
-app.use("/post", postRouter);
+const juiceRouter = require("./routes/juice");
+app.use("/juice", juiceRouter);
 app.get("/", (req, res) => {
   console.log(process.env);
 
