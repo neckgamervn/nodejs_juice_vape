@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon app.js",
     "push":"git add . && git commit -m 'add' && git push",
-    "mongo":"cd mongo/bin/ && mongod"
+    "mongo":"cd mongo/bin/ && ./mongod"
   },
   "author": "",
   "license": "ISC",
