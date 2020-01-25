@@ -6,12 +6,13 @@ const { onError, onSuccess, getToken } = require("../const");
 router.post("/Login", async (req, res) => {
   try {
     const loginData = {
-      username: req.body.username,
+      username: req.body.username.trim(),
       password: sha256(req.body.password)
     };
-    const checkLogin = await User.find(loginData);
-    if (checkLogin.length == 1) {
-      loginData.token = getToken(req);
+    const token = getToken(req);
+    const checkLogin = await User.findOneAndUpdate(loginData, { token: token });
+    if (checkLogin) {
+      loginData.token = token;
       delete loginData.password;
       res.json(onSuccess(loginData));
     } else res.json(onError("Sai tên đăng nhập hoặc mật khẩu"));
@@ -21,9 +22,9 @@ router.post("/Login", async (req, res) => {
 });
 router.post("/Register", async (req, res) => {
   try {
-    const check = await User.find({ username: req.body.username });
+    const check = await User.find({ username: req.body.username.trim() });
     const userData = {
-      username: req.body.username,
+      username: req.body.username.trim(),
       token: getToken(req),
       password: sha256(req.body.password)
     };
@@ -36,8 +37,6 @@ router.post("/Register", async (req, res) => {
       res.json(onError("Tài khoản đã tồn tại", 409));
     }
   } catch (error) {
-    console.log(error);
-
     res.json(onError());
   }
 });

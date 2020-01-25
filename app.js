@@ -26,6 +26,21 @@ app.get("/", (req, res) => {
     res.send("Error");
   }
 });
-
+setTimeout(() => {
+  const fetch = require("node-fetch");
+  const Bluebird = require("bluebird");
+  fetch.Promise = Bluebird;
+  fetch("https://noce-juice-vape.herokuapp.com/juice", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  })
+    .then(res => {
+      console.log(res.json());
+    })
+    .then(json => console.log(json));
+}, 100);
 //
 app.listen(process.env.PORT || 5000);

@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  checkAuth(req, res, async () => {
+  // checkAuth(req, res, async () => {
     try {
       const getJuice = req.query._id
         ? await Juice.findById(req.query._id)
@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
     } catch (error) {
       res.json(onError());
     }
-  });
+  // });
 });
 
 router.delete("/", async (req, res) => {
