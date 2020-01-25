@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
     const getJuice = req.query._id
       ? await Juice.findById(req.query._id)
       : await Juice.find();
-    res.json(getJuice ? CONST.onSuccess(getJuice) : CONST.EMPTY);
+    res.json(CONST.onSuccess(getJuice));
   } catch (error) {
     res.json(CONST.ERROR);
   }

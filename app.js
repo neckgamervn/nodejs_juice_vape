@@ -4,9 +4,21 @@ const app = express();
 const bodyParser = require("body-parser");
 require("dotenv/config");
 app.use(bodyParser.json());
+
+// connect to DB
+mongoose.connect(
+  process.env.DB_CONNECTION,
+  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
+  err => {
+    if (err) console.log(err);
+    else console.log("connect to mongoDB success");
+  }
+);
 //routes
 const juiceRouter = require("./routes/juice");
+const userRouter = require("./routes/user");
 app.use("/juice", juiceRouter);
+app.use("/",userRouter );
 app.get("/", (req, res) => {
   console.log(process.env);
 
@@ -16,13 +28,6 @@ app.get("/", (req, res) => {
     res.send("Error");
   }
 });
-// connect to DB
-mongoose.connect(
-  process.env.DB_CONNECTION,
-  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
-  err => {
-    console.log(err);
-  }
-);
+
 //
 app.listen(process.env.PORT || 5000);
