@@ -9,6 +9,10 @@ const UserSchema = mongoose.Schema({
     type: String,
     require: true
   },
+  password: {
+    type: String,
+    require: true
+  },
   timestamp: {
     type: String,
     default: new Date().getTime()

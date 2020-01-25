@@ -18,10 +18,8 @@ mongoose.connect(
 const juiceRouter = require("./routes/juice");
 const userRouter = require("./routes/user");
 app.use("/juice", juiceRouter);
-app.use("/",userRouter );
+app.use("/", userRouter);
 app.get("/", (req, res) => {
-  console.log(process.env);
-
   try {
     res.send("Wellcome to api juice vape");
   } catch (error) {

@@ -1,42 +1,52 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
-const CONST = require("../const");
 const sha256 = require("sha256");
+const User = require("../models/User");
+const { onError, onSuccess, getToken } = require("../const");
 router.post("/Login", async (req, res) => {
-  const createUser = new User(req.body);
   try {
-    const data = await createUser.save();
-    res.json(CONST.onSuccess(data));
+    const loginData = {
+      username: req.body.username,
+      password: sha256(req.body.password)
+    };
+    const checkLogin = await User.find(loginData);
+    if (checkLogin.length == 1) {
+      loginData.token = getToken(req);
+      delete loginData.password;
+      res.json(onSuccess(loginData));
+    } else res.json(onError("Sai tên đăng nhập hoặc mật khẩu"));
   } catch (error) {
-    res.json(CONST.ERROR);
-  }
-});
-router.post("/Logout", async (req, res) => {
-  const createUser = new User(req.body);
-  try {
-    const data = await createUser.save();
-    res.json(CONST.onSuccess(data));
-  } catch (error) {
-    res.json(CONST.ERROR);
+    res.json(onError("Đăng nhập thất bại"));
   }
 });
 router.post("/Register", async (req, res) => {
   try {
     const check = await User.find({ username: req.body.username });
-    const token = sha256(req.body.username + Date.now() + req.body.password);
+    const userData = {
+      username: req.body.username,
+      token: getToken(req),
+      password: sha256(req.body.password)
+    };
     if (check.length == 0)
-      new User({
-        username: req.body.username,
-        token: token
-      })
-        .save()
-        .then(() => res.json(CONST.onSuccess(token)));
+      new User(userData).save().then(() => {
+        delete userData.password;
+        res.json(onSuccess(userData));
+      });
     else {
-      res.json(CONST.onSuccess("đã tồn tại"));
+      res.json(onError("Tài khoản đã tồn tại", 409));
     }
   } catch (error) {
-    res.json(CONST.ERROR);
+    console.log(error);
+
+    res.json(onError());
+  }
+});
+
+router.post("/Logout", async (req, res) => {
+  try {
+    res.json(onSuccess());
+  } catch (error) {
+    res.json(onError());
   }
 });
 
@@ -45,9 +55,9 @@ router.get("/UserInfo", async (req, res) => {
     const getUser = req.query._id
       ? await User.findById(req.query._id)
       : await User.find();
-    res.json(CONST.onSuccess(getUser));
+    res.json(onSuccess(getUser));
   } catch (error) {
-    res.json(CONST.ERROR);
+    res.json(onError());
   }
 });
 
@@ -58,9 +68,9 @@ router.patch("/UpdateUserInfo", async (req, res) => {
         title: req.body.title
       }
     });
-    res.json(CONST.onSuccess(update));
+    res.json(onSuccess(update));
   } catch (error) {
-    res.json(CONST.ERROR);
+    res.json(onError());
   }
 });
 module.exports = router;
