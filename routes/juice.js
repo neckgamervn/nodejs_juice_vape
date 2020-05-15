@@ -15,14 +15,16 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   // checkAuth(req, res, async () => {
-    try {
-      const getJuice = req.query._id
-        ? await Juice.findById(req.query._id)
-        : await Juice.find();
-      res.json(onSuccess(getJuice));
-    } catch (error) {
-      res.json(onError());
-    }
+  console.log("requst");
+
+  try {
+    const getJuice = req.query._id
+      ? await Juice.findById(req.query._id)
+      : await Juice.find();
+    res.json(onSuccess(getJuice));
+  } catch (error) {
+    res.json(onError());
+  }
   // });
 });
 
