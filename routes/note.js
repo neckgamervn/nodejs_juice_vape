@@ -34,12 +34,18 @@ router.post("/DeleteNote", async (req, res) => {
 });
 router.post("/UpdateNote", async (req, res) => {
   try {
+    const { note } = req.body;
     const update = await Note.findOneAndUpdate(req.body.id, {
       $set: {
-        note: req.body.note,
+        note,
       },
     });
-    res.json(onSuccess(update));
+    res.json(
+      onSuccess({
+        ...update,
+        note,
+      })
+    );
   } catch (error) {
     res.json(onError());
   }
