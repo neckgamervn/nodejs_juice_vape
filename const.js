@@ -3,31 +3,56 @@ const sha256 = require("sha256");
 module.exports = {
   onError(message, code) {
     return {
-      message: message ? message : "Đã có lỗi xảy ra",
-      code: code ? code : 500
+      message: message || "Đã có lỗi xảy ra",
+      code: code || 500,
+      status: 0,
     };
   },
   onSuccess(data) {
-    if (data && data.length != 0)
+    const { note, timestamp } = data;
+    const res = {
+      id: data._id,
+      note,
+      timestamp,
+    };
+    return {
+      data: res,
+      message: "Thành công",
+      code: 200,
+    };
+  },
+  onSuccessArray(data) {
+    if (data && data.length != 0) {
       return {
-        data: data,
+        data: data.map((elem) => {
+          const { note, timestamp, _id } = elem;
+          const res = {
+            id: _id,
+            note,
+            timestamp,
+          };
+          return res;
+        }),
         message: "Thành công",
-        code: 200
+        code: 200,
+        status: 1,
       };
+    }
     return {
       data: [],
       message: "Rỗng",
-      code: 204
+      code: 204,
+      status: 1,
     };
   },
   async checkAuth(req, res, callback) {
     const auth = await User.find({
-      token: req.headers.token
+      token: req.headers.token,
     });
     if (auth.length == 0) res.json(this.onError("Token không tồn tại", 403));
     else callback();
   },
   getToken(req) {
     return sha256(req.body.username + Date.now() + req.body.password);
-  }
+  },
 };
