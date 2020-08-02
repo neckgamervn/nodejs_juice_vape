@@ -9,9 +9,9 @@ module.exports = {
     };
   },
   onSuccess(data) {
-    const { note, timestamp } = data;
+    const { note, timestamp, _id } = data;
     const res = {
-      id: data._id,
+      id: _id,
       note,
       timestamp,
     };

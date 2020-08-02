@@ -40,10 +40,12 @@ router.post("/UpdateNote", async (req, res) => {
         note,
       },
     });
+    const { timestamp, _id } = update;
     res.json(
       onSuccess({
-        ...update,
         note,
+        timestamp,
+        _id,
       })
     );
   } catch (error) {
