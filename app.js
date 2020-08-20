@@ -23,6 +23,12 @@ const noteRouter = require("./routes/note");
 // app.use("/juice", juiceRouter);
 // app.use("/", userRouter);
 // app.use("/CRUD", noteRouter);
+app.get("/", (req, res) => {
+  res.json({
+    msg: "success",
+  });
+});
+
 app.get("/aws", (req, res) => {
   const { Bucket, Name } = req.query;
   const url = `https://${Bucket}.s3.amazonaws.com/${Name}`;
