@@ -22,9 +22,9 @@ app.post("/aws", async (req, res) => {
     var rekognition = new AWS.Rekognition({ region: "us-east-1" });
     // var bufferValue = Buffer.from(base64Data, "base64");
     var bufferValue = toUint8Array(base64Data);
-    // bufferValue = await sharp(bufferValue)
-    //   .resize({ fit: "fill", width: 200, height: 200 })
-    //   .toBuffer();
+    bufferValue = await sharp(bufferValue)
+      .resize({ fit: "fill", width: 80, height: 80 })
+      .toBuffer();
     rekognition.detectCustomLabels(
       {
         Image: {
@@ -32,12 +32,12 @@ app.post("/aws", async (req, res) => {
         },
         ProjectVersionArn:
           "arn:aws:rekognition:us-east-1:655053471542:project/cac_loai_sac/version/cac_loai_sac.2020-08-21T17.14.49/1598004889458",
-        MinConfidence: 60,
+        MinConfidence: 70,
       },
       (err, data) => {
-        console.log(data);
         const timeLoad = new Date().getTime() - TimeStart;
         console.log(timeLoad);
+        console.log(data);
         res.json(data);
       }
     );
