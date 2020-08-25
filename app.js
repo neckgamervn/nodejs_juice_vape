@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const AWS = require("aws-sdk");
 require("dotenv/config");
 const { exec } = require("child_process");
 app.use(bodyParser.json());
@@ -11,30 +12,40 @@ app.get("/", (req, res) => {
 });
 
 app.post("/aws", async (req, res) => {
+  var TimeStart = new Date().getTime();
   try {
     const Name = `sac_${new Date().getTime()}.jpg`;
     var base64Data = req.body.payload.replace(/^data:image\/png;base64,/, "");
-    require("fs").writeFile("images/" + Name, base64Data, "base64", function (
-      err
-    ) {
-      exec(
-        "cd images && ls && aws s3 sync . s3://store-wind",
-        (err, out, outErr) => {
-          const Bucket = "store-wind";
-          const url = `https://${Bucket}.s3.amazonaws.com/${Name}`;
-          exec(
-            `aws rekognition detect-custom-labels \
-          --project-version-arn "arn:aws:rekognition:us-east-1:655053471542:project/cac_loai_sac/version/cac_loai_sac.2020-08-21T17.14.49/1598004889458" \
-          --image '{"S3Object": {"Bucket": "${Bucket}","Name": "${Name}"}}' \
-          --region us-east-1`,
-            (err, out, outErr) => {
-              res.json({ url, ...JSON.parse(out) });
-            }
-          );
-        }
-      );
-    });
+    base64Data = base64Data.replace(/(\r\n|\n|\r)/gm, "");
+    const sharp = require("sharp");
+    var toUint8Array = require("base64-to-uint8array");
+    var rekognition = new AWS.Rekognition({ region: "us-east-1" });
+    // var bufferValue = Buffer.from(base64Data, "base64");
+    var bufferValue = toUint8Array(base64Data);
+    // bufferValue = await sharp(bufferValue)
+    //   .resize({ fit: "fill", width: 200, height: 200 })
+    //   .toBuffer();
+    rekognition.detectCustomLabels(
+      {
+        Image: {
+          Bytes: bufferValue,
+        },
+        ProjectVersionArn:
+          "arn:aws:rekognition:us-east-1:655053471542:project/cac_loai_sac/version/cac_loai_sac.2020-08-21T17.14.49/1598004889458",
+        MinConfidence: 60,
+      },
+      (err, data) => {
+        console.log(data);
+        const timeLoad = new Date().getTime() - TimeStart;
+        console.log(timeLoad);
+        res.json(data);
+      }
+    );
+    // require("fs").writeFile("images/" + Name, base64Data, "base64", function (
+    //   err
+    // ) {});
   } catch (error) {
+    console.log(error);
     res.send(error);
   }
 });
