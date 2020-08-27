@@ -12,6 +12,10 @@ app.get("/", (req, res) => {
   });
 });
 
+/*
+curl --location --request POST 'http://localhost:5000/aws' \
+--form 'payload=@/Users/nguyenhaihoang/Desktop/z2036052375091_ced10a30172ee2c9c429988e08b1e153.jpg'
+*/
 app.post("/aws", async (req, res) => {
   var TimeStart = new Date().getTime();
   try {
