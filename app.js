@@ -18,11 +18,11 @@ const juiceRouter = require("./routes/juice");
 const userRouter = require("./routes/user");
 const noteRouter = require("./routes/note");
 // app.use("/juice", juiceRouter);
-// app.use("/", userRouter);
+app.use("/user", userRouter);
 app.use("/CRUD", noteRouter);
 app.get("/", (req, res) => {
   try {
-    res.send("Wellcome to CRUD");
+    res.send("Wellcome to MP_DEMO");
   } catch (error) {
     res.send("Error");
   }

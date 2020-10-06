@@ -14,6 +14,7 @@ module.exports = {
       id: _id,
       note,
       timestamp,
+      ...data,
     };
     return {
       data: res,

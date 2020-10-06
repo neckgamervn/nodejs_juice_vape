@@ -7,12 +7,13 @@ router.post("/Login", async (req, res) => {
   try {
     const loginData = {
       username: req.body.username.trim(),
-      password: sha256(req.body.password)
+      password: sha256(req.body.password),
     };
     const token = getToken(req);
     const checkLogin = await User.findOneAndUpdate(loginData, { token: token });
     if (checkLogin) {
       loginData.token = token;
+      loginData.role = checkLogin.role;
       delete loginData.password;
       res.json(onSuccess(loginData));
     } else res.json(onError("Sai tên đăng nhập hoặc mật khẩu"));
@@ -26,7 +27,8 @@ router.post("/Register", async (req, res) => {
     const userData = {
       username: req.body.username.trim(),
       token: getToken(req),
-      password: sha256(req.body.password)
+      password: sha256(req.body.password),
+      role: req.body.role,
     };
     if (check.length == 0)
       new User(userData).save().then(() => {
@@ -64,8 +66,8 @@ router.patch("/UpdateUserInfo", async (req, res) => {
   try {
     const update = await User.findOneAndUpdate(req.body._id, {
       $set: {
-        title: req.body.title
-      }
+        title: req.body.title,
+      },
     });
     res.json(onSuccess(update));
   } catch (error) {

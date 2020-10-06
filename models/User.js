@@ -3,20 +3,24 @@ const mongoose = require("mongoose");
 const UserSchema = mongoose.Schema({
   username: {
     type: String,
-    require: true
+    require: true,
   },
   token: {
     type: String,
-    require: true
+    require: true,
+  },
+  role: {
+    type: Number,
+    require: true,
   },
   password: {
     type: String,
-    require: true
+    require: true,
   },
   timestamp: {
     type: String,
-    default: new Date().getTime()
-  }
+    default: new Date().getTime(),
+  },
 });
 
 module.exports = mongoose.model("User", UserSchema);
