@@ -17,9 +17,11 @@ mongoose.connect(
 const juiceRouter = require("./routes/juice");
 const userRouter = require("./routes/user");
 const noteRouter = require("./routes/note");
+const categorizeRouter = require("./routes/categorize");
 // app.use("/juice", juiceRouter);
 app.use("/user", userRouter);
-app.use("/CRUD", noteRouter);
+app.use("/categorize", categorizeRouter);
+// app.use("/CRUD", noteRouter);
 app.get("/", (req, res) => {
   try {
     res.send("Wellcome to MP_DEMO");

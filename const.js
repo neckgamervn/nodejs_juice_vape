@@ -25,15 +25,7 @@ module.exports = {
   onSuccessArray(data) {
     if (data && data.length != 0) {
       return {
-        data: data.map((elem) => {
-          const { note, timestamp, _id } = elem;
-          const res = {
-            id: _id,
-            note,
-            timestamp,
-          };
-          return res;
-        }),
+        data,
         message: "Thành công",
         code: 200,
         status: 1,
