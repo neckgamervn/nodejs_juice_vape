@@ -6,7 +6,7 @@ const { onError, onSuccess, getToken } = require("../const");
 router.post("/Login", async (req, res) => {
   try {
     const loginData = {
-      username: req.body.username.trim(),
+      username: req.body.username.trim().toLowerCase(),
       password: sha256(req.body.password),
     };
     const token = getToken(req);
