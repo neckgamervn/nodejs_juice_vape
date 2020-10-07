@@ -62,7 +62,7 @@ router.get("/UserInfo", async (req, res) => {
     );
   } catch (error) {
     console.log(error);
-    res.json(onError());
+    res.json(onError("Tài khoản của bạn đã bị đăng nhập ở nơi khác"));
   }
 });
 

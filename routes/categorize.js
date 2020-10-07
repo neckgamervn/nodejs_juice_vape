@@ -2,17 +2,20 @@ const express = require("express");
 const router = express.Router();
 const Categorize = require("../models/Categorize");
 const { onError, onSuccessArray, getToken } = require("../const");
+const User = require("../models/User");
 router.get("/", async (req, res) => {
   try {
-    var data = await Categorize.find();
-    if (data) {
-      console.log(data);
-      data = data.map(({ questions, cate }) => ({ questions, cate }));
-      res.json(onSuccessArray(data));
-    } else res.json(onError("error"));
+    const checkAuth = await User.findOne({ token: req.headers.token });
+
+    if (checkAuth) {
+      var data = await Categorize.find();
+      if (data) {
+        data = data.map(({ questions, cate }) => ({ questions, cate }));
+        res.json(onSuccessArray(data));
+      } else res.json(onError("error"));
+    } else throw new Error("not login");
   } catch (error) {
-    console.log(error);
-    res.json(onError("error"));
+    res.json(onError());
   }
 });
 router.post("/", async (req, res) => {
