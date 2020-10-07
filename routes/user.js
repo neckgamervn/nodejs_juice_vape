@@ -53,11 +53,15 @@ router.post("/Logout", async (req, res) => {
 
 router.get("/UserInfo", async (req, res) => {
   try {
-    const getUser = req.query._id
-      ? await User.findById(req.query._id)
-      : await User.find();
-    res.json(onSuccess(getUser));
+    const { username, role } = await User.findOne({ token: req.headers.token });
+    res.json(
+      onSuccess({
+        username,
+        role,
+      })
+    );
   } catch (error) {
+    console.log(error);
     res.json(onError());
   }
 });

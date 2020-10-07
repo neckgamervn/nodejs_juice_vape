@@ -6,11 +6,8 @@ router.get("/", async (req, res) => {
   try {
     var data = await Categorize.find();
     if (data) {
-      // data = data.map((elem) => ({
-      //   option: elem.option,
-      //   cate: elem.cate,
-      //   question: elem.question,
-      // }));
+      console.log(data);
+      data = data.map(({ questions, cate }) => ({ questions, cate }));
       res.json(onSuccessArray(data));
     } else res.json(onError("error"));
   } catch (error) {

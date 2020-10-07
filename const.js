@@ -20,6 +20,7 @@ module.exports = {
       data: res,
       message: "Thành công",
       code: 200,
+      status: 1,
     };
   },
   onSuccessArray(data) {

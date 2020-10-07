@@ -14,9 +14,9 @@ mongoose.connect(
   }
 );
 //routes
-const juiceRouter = require("./routes/juice");
+// const juiceRouter = require("./routes/juice");
 const userRouter = require("./routes/user");
-const noteRouter = require("./routes/note");
+// const noteRouter = require("./routes/note");
 const categorizeRouter = require("./routes/categorize");
 // app.use("/juice", juiceRouter);
 app.use("/user", userRouter);
