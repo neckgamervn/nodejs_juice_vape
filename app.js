@@ -19,11 +19,11 @@ mongoose.connect(
 const userRouter = require("./routes/user");
 // const noteRouter = require("./routes/note");
 const categorizeRouter = require("./routes/categorize");
-const driveRouter = require("./routes/drive");
+const storageRouter = require("./routes/storage");
 // app.use("/juice", juiceRouter);
 app.use("/user", userRouter);
 app.use("/categorize", categorizeRouter);
-app.use("/drive", driveRouter);
+app.use("/storage", storageRouter);
 // app.use("/CRUD", noteRouter);
 app.get("/", (req, res) => {
   try {
