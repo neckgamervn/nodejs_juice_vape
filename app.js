@@ -25,7 +25,7 @@ app.use("/categorize", categorizeRouter);
 // app.use("/CRUD", noteRouter);
 app.get("/", (req, res) => {
   try {
-    res.send("Wellcome to MP_DEMO");
+    res.send("Wellcome to MP_DEMO + auto reload");
   } catch (error) {
     res.send("Error");
   }
