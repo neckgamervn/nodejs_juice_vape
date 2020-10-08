@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "liquid-force-235517",
+  "private_key_id": "5afcce238566bbdab96721665baeae76c85cc5f4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC0449tFDGl7u1n\nDWMEYmzEUnjBpwFYy7uWtH18fxAyeQ3wOBj0i9smo8Z6jNimrwctub8HyNXBVNMC\nFg4miYKM3bngVBzFMqb6hJThw5uS5ngjcQcP+OqQ2RmrYovYxNHX6BpSR3sqhkca\n9qpT446wYgmiiTCGXD8l4oGt+y4jiqoR8QT/sTnZR3q8bITNsYGoZectAVO4fIs0\nv/lBtxAPuIAvRZWagMluUEOxw498BQhl8TbFpM/SFgFd+ERQrN+IxD3aPuczVYFj\ntO2rW6PkkwjSdTtYAwQZs+tKSgS9Y4la4PK/6ID03E1G6wqihCvViuZ0qoUtYqo6\nJtS7sPZJAgMBAAECggEAFQ9BTYPCW/07KnpGguYqn5iycmlNINdnWZ5d1ba9XgL1\n+netgBsgQplirDXlq1JJVauAcBmTuVR01JNYxmfQCTJvR4zDZLoG8reo1bf+TtYC\nOq4YEmX6eS6tbGSmv2/6tlZRai7kSgkkEiGRpv6hSCvBz2iFe78VowWB742Ey6JQ\n6ZNnQgVEw64SfU7hwyoBOk3uEC0llPSNf6S7iByr8d1MPoT/WwoGIjwxBG2vUuq1\nP/DYCUFdGgLprFgnTPJMLKIifWMc2JY5vV8XwdnbMGWgFXt667YJ4z3Rw4ep6hwI\nUY+34zPIMN7qgo3+5HGYpFfnvf3kUY7fgO9+mEE+GQKBgQDq9BCAhtovhPGg3Kvf\nSg6OzVum6HNv6Pf1CN76nRtWizuxIO93PRnovr+mp+fPm+tusFteRXc63rDRELey\n1tSHryGnOcbwSe3GccqV9qM8I+8XeogNu9JHr7vsDX8juDWEOGn2X9UGD8da+su5\n9QRWT0hzCSPX26K/dz/Sz65pLwKBgQDFF7FiAAk1HBMTziAZVVfHkD9zqmB4CfXo\nxO8uZHNTkbt62OFc1kayG3TbjuayGVaXikznqasNsOUqa+yiNwYAyR4FbknbRnEd\nIYfuUlwJMfNxvhKbwRCsiNigPZ3wMXhKEEdLMOnUQT60pZ8ZTXUx/sJY6uaf6sXa\nh1kZaqPKBwKBgQCgOgMK82vV3i69yd937dQRtKAdKgaXOePm+b6+X+el1FvHxrMn\nuMZzf6nJKFYgsa8TlDcrCepufjFM0b7EulbDlT45AWDWu0PpAe7q6ACX4dWKSGiC\nHSUg+AoKx4V9wYDVg3dXqjDm6lnEhKXsUdg8V+MLeB82dLT/J36h8Dl7xwKBgQCY\nJEf7nId/BeL8INvKcoTGOmWgxd6eCyJWwt7XcxdLZW3R0OV2oroD9wnoCpGu3bxo\nUow3MFQox2q/qnwKZGsv5BBWpOJCcEgU8rNZlx4Qwwxnuw/mR8y1QxXl7Gqk5asz\nkQlX07RM8uiSzl7YS2CybTRdK0dIHxUIMf7njdhNtQKBgQDXik00mc38uEagLCS8\n0qTfiL/dkMuzGmJ3R78y+JaQjKV8YuBwUvBAT8C+yJ8zGH5QqE54gm04h3VgtoKh\nSvFAMRILsmmMJEZNN9SFM3n5haldsqiaSxD+RRe72UBxJkBYS2ZHXDmB01zfVnjd\n8g5QgNX2S4n0CHx97x4O7+qatA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-ewhd2@liquid-force-235517.iam.gserviceaccount.com",
+  "client_id": "114918456228991433926",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ewhd2%40liquid-force-235517.iam.gserviceaccount.com"
+}
