@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const bodyParser = require("body-parser");
+const fetch = require("node-fetch");
 require("dotenv/config");
 app.use(bodyParser.json());
 // connect to DB
@@ -29,4 +30,13 @@ app.get("/", (req, res) => {
     res.send("Error");
   }
 });
+
+setInterval(() => {
+  fetch("https://noce-juice-vape.herokuapp.com/").then((res) => {
+    res.text().then((res) => {
+      console.log(res);
+    });
+  });
+}, 1500000);
+
 app.listen(process.env.PORT || 5000);
